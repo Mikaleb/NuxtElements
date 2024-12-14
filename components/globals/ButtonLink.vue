@@ -1,20 +1,29 @@
 <script setup lang="ts">
-import { PinceauTheme } from "pinceau";
-import { computedStyle } from "pinceau/runtime";
+import { PinceauTheme } from 'pinceau'
+import { computedStyle } from 'pinceau/runtime'
+
 defineProps({
-  blank: { type: Boolean, required: false, default: false },
-  color: computedStyle<keyof PinceauTheme["color"]>("primary"),
-  href: { type: String, required: true, default: "" },
-  icon: { type: String, default: "" },
-  ...variants,
-});
+  blank: {
+    type: Boolean,
+    required: false,
+    default: false
+  },
+  color: computedStyle<keyof PinceauTheme['color']>('primary'),
+  href: {
+    type: String,
+    required: true,
+    default: ''
+  },
+  icon: {
+    type: String,
+    default: ''
+  },
+  ...variants
+})
 </script>
+
 <template>
-  <NuxtLink
-    class="button-link"
-    :to="href"
-    :target="blank ? '_blank' : undefined"
-  >
+  <NuxtLink class="button-link" :to="href" :target="blank ? '_blank' : undefined">
     <Icon v-if="icon" :name="icon" />
     <ContentSlot :use="$slots.default" unwrap="p ul li" />
   </NuxtLink>
